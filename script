@@ -1,0 +1,22 @@
+// service id
+// 1iePjnglUzelAuJJb-QykRcUUWYBSKiNGUWVljnNe03G9zWzSUGIRWLXa
+
+
+function runPDF(){
+let sheetId = '1h2uj_g-SfwE0I8UUWOPi1tTm4RcHWZXx0Mue-6Sif8Y'
+// ไอดีชองชีท จากข้อ 1
+let tmpFileId = '18TaN8zyPa0Lv0CG94faUKgrtSUhixuPpRJbfTPDeu_4'
+//ไอดีของ slide จากข้อ 2
+let pdfFolder = DriveApp.getFoldersByName('CER_ACT02').next()
+let templateFile = DriveApp.getFileById(tmpFileId)
+let data =PdfService.initData(sheetId, 'การตอบแบบฟอร์ม 1',1810)
+//ไม่ระบุเลขแถว เพราะต้องการสร้างไฟล์ PDF แค่แถวสุดท้าย
+let option = {
+ pdfFolder: pdfFolder,
+ templateFile: templateFile,
+ data: data,
+  fileName: ['Act-No','fullname']
+  // นำชื่อ field มาเป็นชื่อไฟล์
+}
+ PdfService.createPDFFromSlide(option)
+}
